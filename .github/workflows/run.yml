@@ -1,0 +1,18 @@
+jobs:
+  check:
+    name: Verify
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Begin
+        uses: actions/checkout@v2
+      - name: Download Dependencies
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Unit Tests
+        run: ./test/check
+
+name: Check
+
+on:
+  schedule:
+    - cron: "5 */1 * * *"
